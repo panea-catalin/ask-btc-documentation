@@ -1,0 +1,73 @@
+Each Bitcoin transaction has various fields and data that describe the details of the transaction. Here's a breakdown:
+
+1. `txid`: The transaction identifier (hash) of this transaction. It is a unique identifier for this specific transaction.
+
+2. `hash`: Another representation of the transaction hash.
+
+3. `version`: The transaction version.
+
+4. `size`: The size of the transaction in bytes.
+
+5. `vsize`: The virtual size of the transaction. It is used to calculate transaction fees in some cases.
+
+6. `weight`: The weight of the transaction.
+
+7. `locktime`: The locktime of the transaction, which determines when it can be added to the blockchain.
+
+8. `vin`: An array of inputs to the transaction. Each input specifies a source of funds.
+
+    - `txid`: The transaction identifier of the source transaction.
+    - `vout`: The index of the output in the source transaction.
+    - `scriptSig`: The script that unlocks the source transaction output.
+    - `sequence`: A sequence number.
+
+9. `vout`: An array of outputs from the transaction. Each output specifies where the funds are being sent.
+
+    - `value`: The amount of Bitcoin being sent to this output.
+    - `n`: The index of this output in the transaction.
+    - `scriptPubKey`: The script that specifies the conditions for spending this output.
+
+10. `hex`: The hexadecimal representation of the entire transaction.
+
+11. `blockhash`: The hash of the block in which this transaction is included.
+
+12. `confirmations`: The number of confirmations this transaction has received.
+
+13. `time`: The timestamp of the transaction, indicating when it was created.
+
+14. `blocktime`: The timestamp of the block in which this transaction is included.
+
+This information describes the details of a Bitcoin transaction, including the sender, recipient, amount, and other transaction-specific data. 
+Transactions like these are recorded on the Bitcoin blockchain to ensure the integrity and transparency of the Bitcoin network.
+
+###Example
+{'txid': '957968e28db5c2354ff112aa90adb2bb023c48a5f1d7cffcc477df3b3780f155', 'hash': '957968e28db5c2354ff112aa90adb2bb023c48a5f1d7cffcc477df3b3780f155', 'version': 1, 'size': 1125, 
+'vsize': 1125, 'weight': 4500, 'locktime': 0, 'vin': [{'txid': '7585eae134d7eeb50a03a93e64541c99dd7d24a96ee99b652581a7527e95df10', 'vout': 0, 
+'scriptSig': {'asm': '3046022100d1db8cb1dd5ba6b2ddd558cf65cfafbc3faf098bb4b159bceedf02706f702d6b022100ed99e6849361c76be21339f15602d60be843cd03c827885171b20c3d333e4ec7[ALL] 
+044071710cc126f20fba9e5d8c2cb201eea310c897401e889b47dd0ee246e324996eb3f47bda18180bb4e04f2acf6e027376f3526956ccc436f44484feb63c1cfc', 
+'hex': '493046022100d1db8cb1dd5ba6b2ddd558cf65cfafbc3faf098bb4b159bceedf02706f702d6b022100ed99e6849361c76be21339f15602d60be843cd03c827885171b20c3d333e4ec70141044071710cc126f20fba9e5d8c2cb201eea310c897401e889b47dd0ee246e324996eb3f47bda18180bb4e04f2acf6e027376f3526956ccc436f44484feb63c1cfc'},
+'sequence': 4294967295}, {'txid': '034b2cc2a45bdf51ea1380d0799e61b128d8c49c13c7d1411df88103a71dcf34', 'vout': 7, 
+'scriptSig': {'asm': '304402205dce8d79452932bce7bfe7df1c5c8760905811a118e41ee2478c451d4282f7ea0220625893542f79ed8ffafb320a0fc311cb23bbff41742ab0c42cf2dd87708a4e1c[ALL] 
+04ba15ac9c8389a330acfe91f013d2f06f728f323dd909fc25302a0af992515ea3bb4cf861ce4de1db90bb15632e0ba539a5d029cdc38970d8107eae9b84253257', 
+'hex': '47304402205dce8d79452932bce7bfe7df1c5c8760905811a118e41ee2478c451d4282f7ea0220625893542f79ed8ffafb320a0fc311cb23bbff41742ab0c42cf2dd87708a4e1c014104ba15ac9c8389a330acfe91f013d2f06f728f323dd909fc25302a0af992515ea3bb4cf861ce4de1db90bb15632e0ba539a5d029cdc38970d8107eae9b84253257'}, 
+'sequence': 4294967295}, {'txid': '957a147e99e99f87023e16e0ccfa940871c86ec4afbc5c410c88a928da5c0490', 'vout': 39, 
+'scriptSig': {'asm': '3046022100b07669e1bd9f98a77b8ccb0af2b744072fc7ec068454571172521a4c866f6b11022100eca1d9b805f4f5d2628b49adeb4d54aa51ceb0f0b289447b12018654a91fc2c2[ALL] 
+047c69dad2f8a43d70254684f64a6bc65f6b8afc48b92e0de7b67c440eff651aa95ba8556057c3eeaf36d6585f4696872478616acf10509cb421da701c607020a9', 
+'hex': '493046022100b07669e1bd9f98a77b8ccb0af2b744072fc7ec068454571172521a4c866f6b11022100eca1d9b805f4f5d2628b49adeb4d54aa51ceb0f0b289447b12018654a91fc2c20141047c69dad2f8a43d70254684f64a6bc65f6b8afc48b92e0de7b67c440eff651aa95ba8556057c3eeaf36d6585f4696872478616acf10509cb421da701c607020a9'}, 
+'sequence': 4294967295}, {'txid': 'ecd271a3e63912a976b1c76bc3df57e26d4d995e6cf91b23143f4986384a3dc4', 'vout': 361, 
+'scriptSig': {'asm': '304402204a86e7ec85ad82c8944a7ea037dc846c15ce7a7aeefced5d65c14048b6728b8c0220054df1ac0b42d8a1918de46194816a8b11e7a54a363887cb5cd8c8d00aca760f[ALL] 
+04cfbcb9b4a5758a3742f9f9717d13e7d514c6ee40c645e07b0d17608d865c4336482da13f2d810355541c5266ec7b219e626143540f798b89cd5612e87bbcb42c', 
+'hex': '47304402204a86e7ec85ad82c8944a7ea037dc846c15ce7a7aeefced5d65c14048b6728b8c0220054df1ac0b42d8a1918de46194816a8b11e7a54a363887cb5cd8c8d00aca760f014104cfbcb9b4a5758a3742f9f9717d13e7d514c6ee40c645e07b0d17608d865c4336482da13f2d810355541c5266ec7b219e626143540f798b89cd5612e87bbcb42c'}, 
+'sequence': 4294967295}, {'txid': '3f777d729edfb786fbd4d2eba0196e289e988000890d545acfe724335f2a607d', 'vout': 0, 
+'scriptSig': {'asm': '3046022100ab79167b2a07d2bb4f25fd03fc0f515161c46248289309caa06b31e8a9e3a32a022100d940d3abe19e17a19ed20a66fcb7ef2ea2e7b909e40aa33c58cee3433a686a6f[ALL] 
+04ba15ac9c8389a330acfe91f013d2f06f728f323dd909fc25302a0af992515ea3bb4cf861ce4de1db90bb15632e0ba539a5d029cdc38970d8107eae9b84253257', 
+'hex': '493046022100ab79167b2a07d2bb4f25fd03fc0f515161c46248289309caa06b31e8a9e3a32a022100d940d3abe19e17a19ed20a66fcb7ef2ea2e7b909e40aa33c58cee3433a686a6f014104ba15ac9c8389a330acfe91f013d2f06f728f323dd909fc25302a0af992515ea3bb4cf861ce4de1db90bb15632e0ba539a5d029cdc38970d8107eae9b84253257'}, 
+'sequence': 4294967295}, {'txid': '2350197a2f18440279200ebca3bc8456748f0e5ebbe810a34d3d357c14c2a431', 'vout': 1, 
+'scriptSig': {'asm': '3045022055e96543dd90d4aed79ddd603bc26a00ff9a03103a9ab8175b5433b7c8b901ee022100f688f18b3cd164ed64e678e93be6e2ad50ac400743a5baf0943d07b3ca47f3b1[ALL] 
+048209341e30445f5432942fda8562b0b953ecb82c5733bfff03e5bfa19482cbc6e5df912469881c186897811f5bffe17a12fe6b98c72f593be29d9d92c88ce605', 
+'hex': '483045022055e96543dd90d4aed79ddd603bc26a00ff9a03103a9ab8175b5433b7c8b901ee022100f688f18b3cd164ed64e678e93be6e2ad50ac400743a5baf0943d07b3ca47f3b10141048209341e30445f5432942fda8562b0b953ecb82c5733bfff03e5bfa19482cbc6e5df912469881c186897811f5bffe17a12fe6b98c72f593be29d9d92c88ce605'}, 
+'sequence': 4294967295}], 'vout': [{'value': Decimal('3.74797895'), 'n': 0, 
+'scriptPubKey': {'asm': 'OP_DUP OP_HASH160 14af6f9bf5ecc358cb49c9f2ba2b7c002aa67ad5 OP_EQUALVERIFY OP_CHECKSIG', 'desc': 'addr(12tNgLpdYie7RgViw8SypQeb6vkxhK34WY)#3qyxne3l', 
+'hex': '76a91414af6f9bf5ecc358cb49c9f2ba2b7c002aa67ad588ac', 'address': '12tNgLpdYie7RgViw8SypQeb6vkxhK34WY', 'type': 'pubkeyhash'}}], 
+'hex': '010000000610df957e52a78125659be96ea9247ddd991c54643ea9030ab5eed734e1ea8575000000008c493046022100d1db8cb1dd5ba6b2ddd558cf65cfafbc3faf098bb4b159bceedf02706f702d6b022100ed99e6849361c76be21339f15602d60be843cd03c827885171b20c3d333e4ec70141044071710cc126f20fba9e5d8c2cb201eea310c897401e889b47dd0ee246e324996eb3f47bda18180bb4e04f2acf6e027376f3526956ccc436f44484feb63c1cfcffffffff34cf1da70381f81d41d1c7139cc4d828b1619e79d08013ea51df5ba4c22c4b03070000008a47304402205dce8d79452932bce7bfe7df1c5c8760905811a118e41ee2478c451d4282f7ea0220625893542f79ed8ffafb320a0fc311cb23bbff41742ab0c42cf2dd87708a4e1c014104ba15ac9c8389a330acfe91f013d2f06f728f323dd909fc25302a0af992515ea3bb4cf861ce4de1db90bb15632e0ba539a5d029cdc38970d8107eae9b84253257ffffffff90045cda28a9880c415cbcafc46ec8710894facce0163e02879fe9997e147a95270000008c493046022100b07669e1bd9f98a77b8ccb0af2b744072fc7ec068454571172521a4c866f6b11022100eca1d9b805f4f5d2628b49adeb4d54aa51ceb0f0b289447b12018654a91fc2c20141047c69dad2f8a43d70254684f64a6bc65f6b8afc48b92e0de7b67c440eff651aa95ba8556057c3eeaf36d6585f4696872478616acf10509cb421da701c607020a9ffffffffc43d4a3886493f14231bf96c5e994d6de257dfc36bc7b176a91239e6a371d2ec690100008a47304402204a86e7ec85ad82c8944a7ea037dc846c15ce7a7aeefced5d65c14048b6728b8c0220054df1ac0b42d8a1918de46194816a8b11e7a54a363887cb5cd8c8d00aca760f014104cfbcb9b4a5758a3742f9f9717d13e7d514c6ee40c645e07b0d17608d865c4336482da13f2d810355541c5266ec7b219e626143540f798b89cd5612e87bbcb42cffffffff7d602a5f3324e7cf5a540d890080989e286e19a0ebd2d4fb86b7df9e727d773f000000008c493046022100ab79167b2a07d2bb4f25fd03fc0f515161c46248289309caa06b31e8a9e3a32a022100d940d3abe19e17a19ed20a66fcb7ef2ea2e7b909e40aa33c58cee3433a686a6f014104ba15ac9c8389a330acfe91f013d2f06f728f323dd909fc25302a0af992515ea3bb4cf861ce4de1db90bb15632e0ba539a5d029cdc38970d8107eae9b84253257ffffffff31a4c2147c353d4da310e8bb5e0e8f745684bca3bc0e20790244182f7a195023010000008b483045022055e96543dd90d4aed79ddd603bc26a00ff9a03103a9ab8175b5433b7c8b901ee022100f688f18b3cd164ed64e678e93be6e2ad50ac400743a5baf0943d07b3ca47f3b10141048209341e30445f5432942fda8562b0b953ecb82c5733bfff03e5bfa19482cbc6e5df912469881c186897811f5bffe17a12fe6b98c72f593be29d9d92c88ce605ffffffff0147f65616000000001976a91414af6f9bf5ecc358cb49c9f2ba2b7c002aa67ad588ac00000000', 
+'blockhash': '000000000000000059d38c7e5e82f431fd4b35a1e4531d63726d3b9bcdb7dc92', 'confirmations': 543692, 'time': 1388448333, 'blocktime': 1388448333}
