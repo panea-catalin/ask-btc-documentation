@@ -1,0 +1,120 @@
+// JavaScript section for handling chat functionalities.
+
+// Declare a variable to hold the current user ID and initialize EventSource to null.
+let currentUserId = '{{user_id}}';
+let eventSource = null;
+
+// Function to initialize the EventSource for real-time updates.
+function initializeEventSource() {
+    // Close the existing event source if it exists.
+    if (eventSource) {
+        eventSource.close();
+    }
+
+    // Create a new EventSource that listens to messages for the current user.
+    eventSource = new EventSource('/stream/' + currentUserId);
+    eventSource.onmessage = (event) => {
+        // Parse the incoming message and display it in the chat.
+        const msgData = JSON.parse(event.data);
+        if (msgData.hasOwnProperty('messaged_back')) {
+            addMessageToChat(msgData.user_id, msgData.messaged_back, true);
+        }
+    };
+}
+
+// Add an event listener to the user ID input field to update the current user and reinitialize EventSource.
+document.getElementById('userIdInput').addEventListener('change', (event) => {
+    currentUserId = event.target.value || '{{user_id}}';
+    initializeEventSource();
+});
+
+// Function to send a message when the send button is clicked.
+function sendMessage() {
+    const messageInput = document.getElementById("messageInput");
+    const message = messageInput.value;
+    const userId = document.getElementById("userIdInput").value || '{{user_id}}';
+
+    // Send the message to the server using a POST request.
+    fetch('/send_message', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user_id: userId, messaged_us: message })
+    })
+    .then(response => response.json())
+    .then(() => {
+        // Clear the message input field and display the sent message in chat.
+        messageInput.value = '';
+        addMessageToChat(userId, message, false);
+    })
+    .catch((error) => {
+        // Log any errors in the console.
+        console.error('Error:', error);
+    });
+}
+
+// Add an event listener to trigger sendMessage when the Enter key is pressed.
+document.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Function to add messages to the chat display.
+function addMessageToChat(userId, message, isSystemMessage) {
+    const chatDiv = document.getElementById('message-display');
+    const newMessage = document.createElement('div');
+    newMessage.className = 'message';
+    // Display the message differently based on whether it's from the system or a user.
+    newMessage.textContent = isSystemMessage ? `System: ${message}` : `User ${userId}: ${message}`;
+    // Append the new message to the chat display.
+    chatDiv.appendChild(newMessage);
+}
+
+// Function to fetch initial messages for the current user.
+function fetchInitialMessages() {
+    fetch('/stream/' + currentUserId)
+    .then(response => response.json())
+    .then(messages => {
+        // Display each message in the chat.
+        messages.forEach(message => {
+            addMessageToChat(message.userId, message.text, message.isSystemMessage);
+        });
+    })
+    .catch((error) => {
+        // Log any errors in the console.
+        console.error('Error:', error);
+    });
+}
+
+// Function to fetch and display user paths.
+function getUserPaths(userId) {
+    fetch('/get_user_paths/' + userId)
+    .then(response => response.json())
+    .then(paths => {
+        // Display the fetched user paths.
+        displayUserPaths(paths);
+    })
+    .catch((error) => {
+        // Log any errors in the console.
+        console.error('Error:', error);
+    });
+}
+
+// Function to display user paths in the UI.
+function displayUserPaths(paths) {
+    const pathsDiv = document.getElementById('paths-display');
+    pathsDiv.innerHTML = ''; // Clear previous content.
+    paths.forEach(pathHTML => {
+        // Create a new div for each path and add it to the paths display.
+        const newPath = document.createElement('div');
+        newPath.innerHTML = pathHTML; // Use innerHTML to render the HTML content.
+        pathsDiv.appendChild(newPath);
+    });
+}
+
+// Event listener to initialize functionalities when the DOM content is fully loaded.
+document.addEventListener("DOMContentLoaded", () => {
+    getUserPaths(currentUserId);
+    fetchInitialMessages();
+    initializeEventSource();
+});
