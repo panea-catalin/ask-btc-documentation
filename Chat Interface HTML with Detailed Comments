@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Interface</title>
+    <!-- Linking to external CSS file for styling the page. 'url_for' is a Flask function for finding the correct URL for static files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>   
+    <!-- This div creates a banner at the top of the page with a fixed height and amber background color -->
+    <div style="width: 100%; height: 50px; background-color: amber;"></div>
+
+    <!-- Including an external menu HTML, which helps in reusing this component across different pages -->
+    {% include 'menu.html' %}
+
+    <!-- Chat container for holding the entire chat interface -->
+    <div id="chat-container">
+        <!-- Message display area where chat messages will be shown -->
+        <div id="message-display"></div>
+
+        <!-- Message input area for users to type and send messages -->
+        <div id="message-input-area">
+            <!-- Input field for user ID, pre-filled with a placeholder for the user's ID -->
+            <input type="text" id="userIdInput" placeholder="{{user_id}}" />
+            <!-- Input field for typing a message -->
+            <input type="text" id="messageInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+            <!-- Button to send the message -->
+            <button id="sendButton" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
+    <!-- Additional div elements for layout and design -->
+    <div class="empty-box"></div>
+    <div id="paths-display"></div>
+
+    <!-- The following script tags contain JavaScript to handle chat functionalities -->
+    <script>
+        /* JavaScript code goes here */
+    </script>
+    
+    <!-- Including footer HTML for consistency across pages -->
+    {% include 'footer.html' %}
+</body>
+</html>
