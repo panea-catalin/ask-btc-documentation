@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Link to the CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <!-- Sign up form that sends data to the server -->
+        <form action="/signup" method="post">
+            <!-- Input field for username -->
+            <input type="text" name="username" placeholder="Username" class="form-input" required>
+            <!-- Input field for password -->
+            <input type="password" name="password" placeholder="Password" class="form-input" required>
+            <!-- Submit button for the form -->
+            <button type="submit" class="button">Sign Up</button>
+        </form>
+        <!-- Link to switch to the login page -->
+        <div class="switch">
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>
